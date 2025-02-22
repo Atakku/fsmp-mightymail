@@ -55,12 +55,12 @@ public class PostBoxScreen extends AbstractContainerScreen<PostBoxMenu>
     private static final int SCROLL_SPEED = 5;
     private static final int SCROLL_BAR_WIDTH = 6;
     private static final int SCROLL_BAR_HEIGHT = 27;
-    private static final int MAILBOX_ENTRY_WIDTH = 85;
+    private static final int MAILBOX_ENTRY_WIDTH = 170;
     private static final int MAILBOX_ENTRY_HEIGHT = 14;
     private static final int CONTAINER_LEFT = 8;
     private static final int CONTAINER_TOP = 34;
     private static final int CONTAINER_HEIGHT = 130;
-    private static final int CONTAINER_WIDTH = 85;
+    private static final int CONTAINER_WIDTH = 170;
     private static final int MAX_VISIBLE_ITEMS = Mth.ceil((double) CONTAINER_HEIGHT / MAILBOX_ENTRY_HEIGHT) + 1;
     private static final int MAX_RESPONSE_DISPLAY_TIME = 100;
 
@@ -80,9 +80,9 @@ public class PostBoxScreen extends AbstractContainerScreen<PostBoxMenu>
     public PostBoxScreen(PostBoxMenu menu, Inventory playerInventory, Component title)
     {
         super(menu, playerInventory, Component.empty());
-        this.imageWidth = 283;
+        this.imageWidth = 368;
         this.imageHeight = 172;
-        this.inventoryLabelX = 113;
+        this.inventoryLabelX = 198;
         this.inventoryLabelY = this.imageHeight - 93;
         this.updateSearchFilter();
     }
@@ -92,7 +92,7 @@ public class PostBoxScreen extends AbstractContainerScreen<PostBoxMenu>
     {
         super.init();
 
-        this.addRenderableWidget(this.searchEditBox = new EditBox(this.font, this.leftPos + 8, this.topPos + 18, 92, 12, Utils.translation("gui", "search_mailboxes")));
+        this.addRenderableWidget(this.searchEditBox = new EditBox(this.font, this.leftPos + 8, this.topPos + 18, 177, 12, Utils.translation("gui", "search_mailboxes")));
         this.searchEditBox.setHint(Utils.translation("gui", "search"));
         this.searchEditBox.setResponder(s -> {
             this.query = s;
@@ -104,7 +104,7 @@ public class PostBoxScreen extends AbstractContainerScreen<PostBoxMenu>
             this.searchEditBox.setValue(this.query);
         }
 
-        this.addRenderableWidget(this.messageEditBox = new MultiLineEditBox(this.font, this.leftPos + 118, this.topPos + 13, 116, 54, Utils.translation("gui", "enter_message"), Utils.translation("gui", "package_message")) {
+        this.addRenderableWidget(this.messageEditBox = new MultiLineEditBox(this.font, this.leftPos + 203, this.topPos + 13, 116, 54, Utils.translation("gui", "enter_message"), Utils.translation("gui", "package_message")) {
             @Override
             protected void renderBorder(GuiGraphics graphics, int x, int y, int width, int height) {}
 
@@ -120,7 +120,7 @@ public class PostBoxScreen extends AbstractContainerScreen<PostBoxMenu>
             this.messageEditBox.setValue(this.message);
         }
 
-        this.addRenderableWidget(this.sendButton = new IconButton(this.leftPos + 284, this.topPos + 22, 101, 172, 10, 10, POST_BOX_TEXTURE, 512, 256, btn -> {
+        this.addRenderableWidget(this.sendButton = new IconButton(this.leftPos + 369, this.topPos + 22, 186, 172, 10, 10, POST_BOX_TEXTURE, 512, 256, btn -> {
             if(this.selected != null) {
                 Network.getPlay().sendToServer(new MessageSendPackage(this.selected.getId(), this.message));
                 this.minecraft.getSoundManager().play(SimpleSoundInstance.forUI(SoundEvents.BOOK_PAGE_TURN, 1.0F));
@@ -219,7 +219,7 @@ public class PostBoxScreen extends AbstractContainerScreen<PostBoxMenu>
             {
                 if(this.menu.getContainer().getItem(j * 2 + i).isEmpty())
                 {
-                    graphics.blit(POST_BOX_TEXTURE, this.leftPos + 235 + i * 18, this.topPos + 14 + j * 18, 85, 172, 16, 16, 512, 256);
+                    graphics.blit(POST_BOX_TEXTURE, this.leftPos + 320 + i * 18, this.topPos + 14 + j * 18, 170, 172, 16, 16, 512, 256);
                 }
             }
         }

@@ -41,7 +41,7 @@ public class PostBoxMenu extends AbstractContainerMenu
         {
             for(int i = 0; i < 2; i++)
             {
-                this.addSlot(new PostBoxSlot(container, j * 2 + i, 235 + i * 18, 14 + j * 18));
+                this.addSlot(new PostBoxSlot(container, j * 2 + i, 320 + i * 18, 14 + j * 18));
             }
         }
 
@@ -50,14 +50,14 @@ public class PostBoxMenu extends AbstractContainerMenu
             for(int i = 0; i < 9; i++)
             {
                 int slotIndex = i + j * 9 + 9;
-                int slotX = 114 + i * 18;
+                int slotX = 199 + i * 18;
                 int slotY = 90 + j * 18;
                 this.addSlot(new Slot(playerInventory, slotIndex, slotX, slotY));
             }
         }
         for(int i = 0; i < 9; i++)
         {
-            int slotX = 114 + i * 18;
+            int slotX = 199 + i * 18;
             int slotY = 90 + 58;
             this.addSlot(new Slot(playerInventory, i, slotX, slotY));
         }
